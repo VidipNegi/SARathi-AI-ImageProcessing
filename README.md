@@ -7,9 +7,9 @@ AI-powered Satellite Image Analysis Project
 SARathi is a **Python-based AI-driven image preprocessing pipeline** for satellite imagery.  
 It focuses on **noise reduction, feature enhancement, and intelligent preprocessing** of geospatial images.  
 The project uses **computer vision + AI techniques** to make raw satellite data cleaner and more usable for real-world applications like:  
-- **Disaster management** 🌪️  
-- **Urban planning** 🏙️  
-- **Environmental monitoring** 🌱  
+- **Disaster management** 
+- **Urban planning** 
+- **Environmental monitoring** 
 
 ---
 
