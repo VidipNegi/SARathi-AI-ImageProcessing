@@ -23,10 +23,10 @@ The project uses **computer vision + AI techniques** to make raw satellite data 
 ---
 
 ##  Features  
-✅ Satellite image denoising (Non-Local Means algorithm)  
-✅ Image sharpening & contrast enhancement  
-✅ Preprocessing for ML/AI-based geospatial models  
-✅ Simple & modular Python code  
+ Satellite image denoising (Non-Local Means algorithm)  
+ Image sharpening & contrast enhancement  
+ Preprocessing for ML/AI-based geospatial models  
+ Simple & modular Python code  
 
 ---
 
