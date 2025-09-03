@@ -36,7 +36,7 @@ Key Differentiators
     NumPy: Provides essential numerical operations for data manipulation.
 
 # Project Structure
-
+```
 SARathi/
 │── sarathi.py              # The core SAR processing and analysis pipeline
 │── requirements.txt        # List of all Python dependencies
@@ -48,6 +48,8 @@ SARathi/
 │── docs/                   # Contains documentation, project notes, and references
 │   └── project_notes.md
 │── .gitignore              # Specifies files to be ignored by Git
+```
+
 
 # Getting Started
 
