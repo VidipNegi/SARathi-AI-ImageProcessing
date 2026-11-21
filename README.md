@@ -1,74 +1,41 @@
-# SARathi 
-SARathi: AI-Powered Satellite Image Analysis
-# Overview
+# SARathi
 
-SARathi is a powerful and efficient Python-based pipeline for intelligent preprocessing of Synthetic Aperture Radar (SAR) imagery. Built to bridge the gap between raw geospatial data and practical, real-world applications, this project leverages a combination of computer vision and AI techniques to deliver clean, actionable insights from satellite data. SARathi is designed for reliability and speed, making it an ideal tool for use in critical fields such as disaster management, urban planning, and environmental monitoring.
-Key Differentiators
+A prototype that denoises a SAR (Synthetic Aperture Radar) satellite image, marks likely water with a simple threshold, and writes a short text summary with GPT-2. It is a single Python script, `sarathi.py`.
 
-    Cloud-Independent Operation: Unlike traditional aerial or optical imagery, SAR data is not affected by cloud cover or weather conditions, making it a reliable source for continuous monitoring.
+## What the script does
 
-    Actionable Intelligence: SARathi doesn't just process data; it uses Generative AI to provide a concise, human-readable summary, transforming complex analysis into immediate, actionable insights.
+1. Reads the first band of a SAR GeoTIFF with rasterio.
+2. Reduces speckle noise with Non-Local Means denoising from scikit-image.
+3. Normalises the denoised image and marks pixels below a fixed value of 0.3 as water.
+4. Saves a side-by-side picture (original and detected water) as `sarathi_water_detection.png` in the folder you run it from, and tries to open it.
+5. Generates a short text insight with GPT-2 from a fixed prompt.
 
-    Modular & Scalable: The pipeline is built with a modular architecture, allowing it to be easily adapted for future applications like crop classification, land-use mapping, and seasonal analysis.
+## Tech stack
 
-# Features
+- Python
+- rasterio and NumPy for reading and handling the GeoTIFF
+- scikit-image for Non-Local Means denoising
+- matplotlib for the output picture
+- transformers and PyTorch for the GPT-2 text step
 
-    Noise Reduction: Applies a robust Non-Local Means (NL-Means) algorithm to effectively denoise SAR images, ensuring feature clarity and accuracy for downstream analysis.
+## Files in this repo
 
-    Image Enhancement: Optimizes images through contrast enhancement and sharpening to highlight key features like water bodies and land boundaries.
+- `sarathi.py`: the script
+- `README.md`: this file
 
-    AI-Driven Insights: Integrates a lightweight Generative AI model (GPT-2) to automatically generate two-line summaries of the processed images, providing quick, intelligent interpretations.
+Planned, not in the repo yet: `requirements.txt`, a sample input image, an example output image and project notes.
 
-    Streamlined Pipeline: A simple and modular Python-based pipeline that is easy to understand, modify, and integrate into larger systems.
+## Getting started
 
-# Tech Stack
+1. Clone the repository: `git clone https://github.com/VidipNegi/SARathi-AI-ImageProcessing`
+2. Install the packages listed under Tech stack yourself (there is no `requirements.txt` yet).
+3. Open `sarathi.py` and change the `sar_file` path near the top to your own GeoTIFF. See Limits.
+4. Run `python sarathi.py`.
 
-    Python 3.12: The core programming language for the pipeline.
+## Limits
 
-    rasterio: For efficient reading and manipulation of geospatial data formats like GeoTIFF.
-
-    scikit-image: Utilized for advanced image processing, including the Non-Local Means denoising algorithm.
-
-    transformers: Enables the integration of pre-trained Generative AI models for automated text generation.
-
-    Pillow (PIL): Used for general image handling and saving the processed output.
-
-    NumPy: Provides essential numerical operations for data manipulation.
-
-# Project Structure
-```
-SARathi/
-│── sarathi.py              # The core SAR processing and analysis pipeline
-│── requirements.txt        # List of all Python dependencies
-│── README.md               # Comprehensive project documentation (this file)
-│── data/                   # (Optional) Directory for sample SAR images
-│   └── sample_input.tif
-│── output/                 # Directory for storing generated results (denoised/analyzed images)
-│   └── sar_water_detection.png
-│── docs/                   # Contains documentation, project notes, and references
-│   └── project_notes.md
-│── .gitignore              # Specifies files to be ignored by Git
-```
-
-
-# Getting Started
-
-To get a local copy of the project up and running, follow these steps:
-
-    Clone the repository:
-
-    git clone (https://github.com/VidipNegi/SARathi-AI-ImageProcessing)
-
-    Navigate to the project directory:
-
-    cd SARathi
-
-    Install the dependencies:
-
-    pip install -r requirements.txt
-
-    Run the main script:
-
-    python sarathi.py
-
-This will execute the pipeline, process the sample data, and save the results in the output/ directory.
+- No measured results yet. Nothing here has been scored against reference data.
+- No licence has been added.
+- The input path in `sarathi.py` is hardcoded to a folder on the author's Windows machine. The script exits if that file is missing, so change it before running.
+- The water threshold (0.3) is a fixed demo value, not tuned or validated.
+- The GPT-2 text comes from a fixed prompt and does not read the image, so it is not an analysis of the result.
